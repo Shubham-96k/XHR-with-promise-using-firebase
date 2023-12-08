@@ -126,6 +126,7 @@ const onAddPost = eve => {
 }
 
 const postobjtemplating = eve => {
+    // postcontainer.innerHTML = " ";
     let card = document.createElement('div');
     card.className = "card mb-2";
     card.id = eve.id;
