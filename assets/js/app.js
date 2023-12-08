@@ -113,22 +113,16 @@ const onAddPost = eve => {
     }
     makeApiCall("POST", postUrl, postobj)
         .then(res => {
-            localStorage.setItem("postId", res.name);
-            let postobjUrl = `${baseUrl}/posts/${res.name}.json`
-            return makeApiCall("GET", postobjUrl)
-        })
-        .then(res => {
-            let getpostid = localStorage.getItem("postId");
-            res.id = getpostid;
-            postobjtemplating(res);
-            postform.reset();
+            postobj.id = res.name;
+            postobjtemplating(postobj);
+            eve.target.reset();
             Swal.fire({
                 icon: "success",
                 title: "Your work has been saved",
                 timer: 1500
-              });
+            });
         })
-        .catch(error => cl(error));
+        .catch(error => alert(error));
 }
 
 const postobjtemplating = eve => {
